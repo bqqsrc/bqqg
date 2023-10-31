@@ -1,0 +1,144 @@
+# 以下用于测试普通数据类型
+# exclusive
+bool_1_1: true
+# not exclusive
+bool_1_2: false 
+# not setTarget
+bool_2_1: false 
+
+# 以下用于测试普通结构体
+# not exclusive
+testdata_1_3: {
+	TestStr: baiqiqi3
+	TestInt: -3599
+	TestFloat: 99.7
+	TestBool: true 
+	TestUint: 235
+}
+# exclusive
+testdata_2_3: {
+	test_str: baiqiqi4 
+	test_int: -9088
+	test_float: 99.53
+	test_bool: false 
+	test_uint: 234
+}
+# not setTarget
+testdata_2_4: {
+	TestStr: baiqiqi5 
+	TestInt: -19088
+	TestFloat: 991.53
+	TestBool: false 
+	TestUint: 2234
+}
+
+# 以下用于测试数组类型和切片类型
+# not setTarget
+int_arr: 3822 2832 82 -32344 98323 21 -23212
+# not exclusive
+float_arr: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+# exclusive
+string_arr: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5
+
+# 以下用于测试map
+# exclusive
+# map[string]float64 
+test_map_str_float: {
+	key1: 998.3
+	key2: 997.6
+	key3: 99.7
+}
+# not setTarget
+# map[int]string
+test_map_int_str: {
+	1: baiqiqi1 
+	2: baiqiqi2 
+	3: baiqiqi3
+	4: baiqiqi4 
+}
+# not exclusive
+# map[float32]bool 
+test_map_float_bool: {
+	98.787: true
+	78.55: false
+	-333.33: false
+	-31233.33: true
+}
+
+# 测试结构体嵌套结构体
+testdata_struct_struct: {
+	test_float: 98.776
+	# exclusive
+	test_struct_tt: {
+		TestStr: subbaiqiqi1
+		TestFloat: -99.3
+		TestInt: -332
+		TestBool: false 
+		TestUint: 989
+	}
+	test_str: baiqiqi8 
+	test_int: -35132
+	test_bool: false
+	test_uint: 34156
+}
+
+testdata_struct_struct_struct: {
+	test_float: 98.7976
+	# not exclusive
+	test_struct1: {
+		TestStr: subbaiqiqi112
+		TestFloat: 8999.3
+		TestInt: 332156
+		TestBool: false 
+		TestUint: 981459
+	}
+	test_str: baiqiqi81 
+	test_int: -332
+	test_struct2: {
+		testSubStruct: {
+			TestStr: baiqiqiqi
+			TestFloat: 99.7123
+		}
+		testFloat: -99111.13
+	}
+	TestStructNest: {
+		TestStr: subbaiqiqi1
+		TestFloat: -991.13
+		TestInt: -33223
+		TestBool: false 
+		TestUint: 989156
+		# exclusive
+		test_struct: {
+			TestStr: subsubbaiqiqi1
+			TestFloat: 99.3568645
+			TestInt: -123332
+			TestBool: true 
+			TestUint: 981439
+		}
+	}
+	test_bool: true
+	test_uint: 3423156
+}
+# exclusive
+testdata_map_struct: {
+	key1: {
+	  TestStr: baiqiqi_map_struct_1
+		TestInt: -52323
+		TestFloat: 8891.53
+		TestBool: true 
+		TestUint: 123
+	}key2: {
+		test_str: baiqiqi_map_struct_2
+		test_int: 97455
+		TestFloat: -675891.53
+		TestBool: false 
+		test_uint: 5623
+	}
+	key3: {
+		test_str: baiqiqi_map_struct_3
+		test_int: -1242
+		test_float: 891.532342
+		test_bool: true 
+		test_uint: 956
+	}
+}

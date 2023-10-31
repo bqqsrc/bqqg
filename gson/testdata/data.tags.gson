@@ -1,0 +1,34 @@
+#!的正确的写法，值得正确写法
+tags_test : tags!test     #这种写法会将前面的tags作为字符串，后面的test作为标签，test只能是字符串，然后拼接成字符串
+
+tags_test: !tags1!tags2!tags3   #这种写法所有的tags都只能是字符串，然后拼接
+
+tags_test: !tag  #这种写法会把tag的值赋值给tags_test
+
+tags_test: !!!tags   #这种写法如果tags是字符串，会先替换!tags，然后一层一层替换，直到所有的!都被替换了，或者没得替换，或者遇到某一层的标签不是字符串，只有最后一层的标签可以不是字符串
+
+tags_test: !{tags1}aaa!{tags2}bbb!{tags3}ccc   
+tags_test: !{!{!{!{aaa}}}}
+
+#多层!嵌套，只有最上一层允许为非字符串，其余各层必须全为字符串，多个拼接，所有标签必须都是字符串，标签与字符串组合，标签也必须是字符串，单个标签则可以是所有类型，一个值最后是一个!，那么这个!将被当成普通字符串处理
+#如果找得到标签，就会进行替换，找不到，就不会替换，直到最后一个标签替换完为止
+
+#!键得正确写法
+tags!test : tags   #一个键tags同时将其标记test
+tags!{test} : tags  #一个键tags同时将其标记为test
+
+tags! :  tags  #会处理为普通得键tags，!会被舍弃
+!tags : tags #会报错，标签不能脱离键得存在
+
+#$的正确的写法
+aaa : $aaa 
+aaa : $aaa$bbb$ccc
+aaa : $$$$aaaa
+aaa : ${${${aaa}}}
+aaa : aaa$aaa
+aaa : aaa$aaa${bbb}ccc${ddd}eee
+
+#占位符得写法和标签得写法类似
+
+
+

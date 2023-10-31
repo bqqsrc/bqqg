@@ -1,0 +1,166 @@
+# 以下用于测试普通数据类型
+bool_1_1: true
+bool_1_2: false 
+bool_2_1: false 
+bool_2_2: true 
+float32_1: 59.999
+float32_2: 89.77
+float64_1: 34e4
+float64_2: 9870e-2
+int8_1: -33
+int8_2: 58
+int16_1: 456
+int16_2: -567
+int32_1: 703522
+int32_2: -89076
+int64_1: 325235298967
+int64_2: -98799889678
+int_1: 39870935321
+int_2: 23458987898
+uint8_1: 27
+uint8_2: 35
+uint16_1: 356
+uint16_2: 598
+uint32_1: 588522
+uint32_2: 82376
+uint64_1: 325906298967
+uint64_2: 98757889678
+uint_1: 39870967321
+uint_2: 23453487898
+string_1: baiqiqi5
+string_2: baiqiqi3
+
+# 以下用于测试普通结构体
+testdata_1_3: {
+	TestStr: baiqiqi3
+	TestInt: -3599
+	TestFloat: 99.7
+	TestBool: true 
+	TestUint: 235
+}
+
+testdata_2_3: {
+	test_str: baiqiqi4 
+	test_int: -9088
+	test_float: 99.53
+	test_bool: false 
+	test_uint: 234
+}
+
+testdata_2_4: {
+	TestStr: baiqiqi5 
+	TestInt: -19088
+	TestFloat: 991.53
+	TestBool: false 
+	TestUint: 2234
+}
+
+testdata_2_5: {
+	TestStr: baiqiqi6
+	test_int: -188
+	test_float: -991.53
+	TestBool: false 
+	TestUint: 1134
+}
+
+testdata_3_3: {
+	test_str: baiqiqi3_3 
+	test_int: -988
+	TestFloat: 99.3
+	test_bool: true 
+	TestUint: 34
+}
+
+testdata_3_4: {
+	TestStr: baiqiqi3_4 
+	TestInt: -198
+	TestFloat: 91.53
+	TestBool: false 
+	TestUint: 224
+}
+
+testdata_3_5: {
+	TestStr: baiqiqi3_5
+	test_int: -1288
+	TestFloat: 891.53
+	TestBool: true 
+	TestUint: 114
+}
+
+# 以下用于测试指针类型的数据
+pbool: true 
+pint: 322334234234234
+pint8: -122
+pint16: 3223
+pint32: -123221312
+pint64: 12312214324234
+puint: 32315624535232
+puint8: 253
+puint16: 23453
+puint32: 2131252
+puint64:12341252345345
+pfloat32: 233.9332
+pfloat64: 11234e-3
+pstring: pstringstring
+
+# 以下用于测试数组类型和切片类型
+int_arr: 3822 2832 82 -32344 98323 21 -23212
+float_arr: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+string_arr: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5 
+bool_arr: true false true true true false false true false 
+uint_arr: 342 352 133412 525322323 9234523 
+int_slice: 3822 2832 82 -32344 98323 21 -23212
+float_slice: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+string_slice: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5 
+bool_slice: true false true true true false false true false 
+uint_slice: 342 352 133412 525322323 9234523 
+int_slice2: 3822 2832 82 -32344 98323 21 -23212
+float_slice2: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+string_slice2: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5 
+bool_slice2: true false true true true false false true false 
+uint_slice2: 342 352 133412 525322323 9234523 
+pint_arr: 3822 2832 82 -32344 98323 21 -23212
+
+# 以下用于测试结构体数据为指针的测试样例
+point_struct: {
+	TestStr: baiqiqi8
+	TestInt: -35998
+	TestFloat: 99.77
+	TestBool: true 
+	TestUint: 2355
+}
+
+# 以下用于测试map
+# map[string]float64 
+test_map_str_float: {
+	key1: 998.3
+	key2: 997.6
+	key3: 99.7
+}
+# map[int]string
+test_map_int_str: {
+	1: baiqiqi1 
+	2: baiqiqi2 
+	3: baiqiqi3
+	4: baiqiqi4 
+}
+# map[float32]bool 
+test_map_float_bool: {
+	98.787: true
+	78.55: false
+	-333.33: false
+	-31233.33: true
+}
+
+# map[bool]unit32 
+test_map_bool_uint: {
+	true: 3832
+	false: 256
+}
+# map[uint32]int16
+test_map_uint_int: {
+	9833: 34
+	785: -56
+	333: 566
+	2333: 133
+}

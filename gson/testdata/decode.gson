@@ -1,0 +1,403 @@
+# 以下用于测试普通数据类型
+bool_1_1: true
+bool_1_2: false 
+bool_2_1: false 
+bool_2_2: true 
+float32_1: 59.999
+float32_2: 89.77
+float64_1: 34e4
+float64_2: 9870e-2
+int8_1: -33
+int8_2: 58
+int16_1: 456
+int16_2: -567
+int32_1: 703522
+int32_2: -89076
+int64_1: 325235298967
+int64_2: -98799889678
+int_1: 39870935321
+int_2: 23458987898
+uint8_1: 27
+uint8_2: 35
+uint16_1: 356
+uint16_2: 598
+uint32_1: 588522
+uint32_2: 82376
+uint64_1: 325906298967
+uint64_2: 98757889678
+uint_1: 39870967321
+uint_2: 23453487898
+string_1: baiqiqi5
+string_2: baiqiqi3
+
+# 以下用于测试普通结构体
+testdata_1_3: {
+	TestStr: baiqiqi3
+	TestInt: -3599
+	TestFloat: 99.7
+	TestBool: true 
+	TestUint: 235
+}
+
+testdata_2_3: {
+	test_str: baiqiqi4 
+	test_int: -9088
+	test_float: 99.53
+	test_bool: false 
+	test_uint: 234
+}
+
+testdata_2_4: {
+	TestStr: baiqiqi5 
+	TestInt: -19088
+	TestFloat: 991.53
+	TestBool: false 
+	TestUint: 2234
+}
+
+testdata_2_5: {
+	TestStr: baiqiqi6
+	test_int: -188
+	test_float: -991.53
+	TestBool: false 
+	TestUint: 1134
+}
+
+testdata_3_3: {
+	test_str: baiqiqi3_3 
+	test_int: -988
+	TestFloat: 99.3
+	test_bool: true 
+	TestUint: 34
+}
+
+testdata_3_4: {
+	TestStr: baiqiqi3_4 
+	TestInt: -198
+	TestFloat: 91.53
+	TestBool: false 
+	TestUint: 224
+}
+
+testdata_3_5: {
+	TestStr: baiqiqi3_5
+	test_int: -1288
+	TestFloat: 891.53
+	TestBool: true 
+	TestUint: 114
+}
+
+# 以下用于测试指针类型的数据
+pbool: true 
+pint: 322334234234234
+pint8: -122
+pint16: 3223
+pint32: -123221312
+pint64: 12312214324234
+puint: 32315624535232
+puint8: 253
+puint16: 23453
+puint32: 2131252
+puint64:12341252345345
+pfloat32: 233.9332
+pfloat64: 11234e-3
+pstring: pstringstring
+
+# 以下用于测试数组类型和切片类型
+int_arr: 3822 2832 82 -32344 98323 21 -23212
+float_arr: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+string_arr: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5 
+bool_arr: true false true true true false false true false 
+uint_arr: 342 352 133412 525322323 9234523 
+int_slice: 3822 2832 82 -32344 98323 21 -23212
+float_slice: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+string_slice: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5 
+bool_slice: true false true true true false false true false 
+uint_slice: 342 352 133412 525322323 9234523 
+int_slice2: 3822 2832 82 -32344 98323 21 -23212
+float_slice2: 93.33 32.5 1.000 78783e-3 -3.2223e2 9.999
+string_slice2: baiqiqi1 baiqiqi2 baiqiqi3 baiqiqi4 baiqiqi5 
+bool_slice2: true false true true true false false true false 
+uint_slice2: 342 352 133412 525322323 9234523 
+
+# 指针数组
+pint_arr: 3822 2832 82 -32344 98323 21 -23212
+
+# 以下用于测试结构体数据为指针的测试样例
+point_struct: {
+	TestStr: baiqiqi8
+	TestInt: -35998
+	TestFloat: 99.77
+	TestBool: true 
+	TestUint: 2355
+}
+
+# 以下用于测试map
+# map[string]float64 
+test_map_str_float: {
+	key1: 998.3
+	key2: 997.6
+	key3: 99.7
+}
+# map[int]string
+test_map_int_str: {
+	1: baiqiqi1 
+	2: baiqiqi2 
+	3: baiqiqi3
+	4: baiqiqi4 
+}
+# map[float32]bool 
+test_map_float_bool: {
+	98.787: true
+	78.55: false
+	-333.33: false
+	-31233.33: true
+}
+
+# map[bool]unit32 
+test_map_bool_uint: {
+	true: 3832
+	false: 256
+}
+# map[uint32]int16
+test_map_uint_int: {
+	9833: 34
+	785: -56
+	333: 566
+	2333: 133
+}
+
+# 测试结构体嵌套结构体
+testdata_struct_struct: {
+	test_float: 98.776
+	test_struct: {
+		TestStr: subbaiqiqi1
+		TestFloat: -99.3
+		TestInt: -332
+		TestBool: false 
+		TestUint: 989
+	}
+	test_str: baiqiqi8 
+	test_int: -35132
+	test_bool: false
+	test_uint: 34156
+}
+
+testdata_struct_struct_struct: {
+	test_float: 98.7976
+	test_struct1: {
+		TestStr: subbaiqiqi112
+		TestFloat: 8999.3
+		TestInt: 332156
+		TestBool: false 
+		TestUint: 981459
+	}
+	test_str: baiqiqi81 
+	test_int: -332
+	test_struct2: {
+		testSubStruct: {
+			TestStr: baiqiqiqi
+			TestFloat: 99.7123
+		}
+		testFloat: -99111.13
+	}
+	TestStructNest: {
+		TestStr: subbaiqiqi1
+		TestFloat: -991.13
+		TestInt: -33223
+		TestBool: false 
+		TestUint: 989156
+		test_struct: {
+			TestStr: subsubbaiqiqi1
+			TestFloat: 99.3568645
+			TestInt: -123332
+			TestBool: true 
+			TestUint: 981439
+		}
+	}
+	test_bool: true
+	test_uint: 3423156
+}
+
+# 测试结构体嵌套字典
+testdata_struct_map: {
+	test_float: 98.1876
+	TestMapFloatInt: {
+		983.367: 13
+		324.36: -113
+		122.22: -123
+		9.83: 127
+	}	
+	test_str: baiqiqi_struct_map
+	test_int: -355632
+	test_bool: true
+	test_uint: 3156
+	test_struct_map_str_uint: {
+		key1: 3523
+		key2: 1323
+		key3: 456
+	}
+}
+# 测试结构体嵌套数组
+testdata_struct_arr: {
+	test_float: 98.776
+	test_str_arr: subbaiqiqi3 sub_arr falses true 983ee
+	test_str: baiqiqi5 
+	test_int_arr: 98 143 -998 983
+	test_int: -98988
+	test_bool: true 
+	test_uint: 3456
+	test_float_arr: 983.77 883.83 -93.323 999.7 783.3
+	test_bool_arr: true true false true false false true
+}
+# 测试结构体数组 （数组嵌套结构体）
+testdata_arr_struct: {
+	TestStr: baiqiqi_arr_1
+	test_int: -12878
+	TestFloat: 8973.53
+	TestBool: false 
+	TestUint: 145214
+}
+{
+	test_str: baiqiqi_arr_2
+	test_int: -31288
+	test_float: 1231.533
+	test_bool: true 
+	test_uint: 13414
+}
+{
+	TestStr: baiqiqi_arr_3
+	TestInt: 5623
+	TestFloat: -78491.53
+	TestBool: true 
+	TestUint: 32114
+}
+
+testdata_slice_struct: {
+	test_float: -498.776
+	test_struct: {
+		TestStr: subbaiqiqi_slice_struct_1
+		TestFloat: 6599.38792
+		TestInt: 11332
+		TestBool: false 
+		TestUint: 976223
+	}
+	test_str: baiqiqi_slice_1 
+	test_int: 25132
+	test_bool: true
+	test_uint: 767156
+}
+{
+	test_float: 9158.776
+	test_struct: {
+		TestStr: subbaiqiqi_slice_struct_2
+		TestFloat: -8899.3
+		TestInt: -33472
+		TestBool: true 
+		TestUint: 176989
+	}
+	test_str: baiqiqi_slice_2 
+	test_int: -3235132
+	test_bool: false
+	test_uint: 62156
+} 
+
+
+# 测试map数组（数组嵌套map）
+# []map[string]string
+testdata_arr_map_str_str: {
+	key1: arr_map_1_baiqiqi1
+	key2: arr_map_1_baiqiqi2
+}
+{
+	key1: arr_map_2_baiqiqi1
+	key2: arr_map_2_baiqiqi2
+	key3: arr_map_2_baiqiqi3 
+}
+{
+	key1: arr_map_3_baiqiqi1
+}
+testdata_slice_map_float_str: {
+	983.3: arr_map_1_983.3
+	135.55: arr_map_1_135.55
+}{
+	8823.32: arr_map_2_8823.32
+}{
+	9183.3: arr_map_3_9183.3
+	-134.32: arr_map_3_-134.32
+	-1312.33: arr_map_3_-1312.33 
+}
+
+# map[string]struct （字典嵌套结构体）
+testdata_map_struct: {
+	key1: {
+	  TestStr: baiqiqi_map_struct_1
+		TestInt: -52323
+		TestFloat: 8891.53
+		TestBool: true 
+		TestUint: 123
+	}key2: {
+		test_str: baiqiqi_map_struct_2
+		test_int: 97455
+		TestFloat: -675891.53
+		TestBool: false 
+		test_uint: 5623
+	}
+	key3: {
+		test_str: baiqiqi_map_struct_3
+		test_int: -1242
+		test_float: 891.532342
+		test_bool: true 
+		test_uint: 956
+	}
+}
+
+# 测试字典中有字典  （字典嵌套字典）
+# map[string]map[string]float64
+testdata_map_map: {
+	key1: {
+		sub1key1: -89.77
+		sub1key2: 98.88
+	}
+	key2: {
+		sub2key1: 983.9
+		sub2key2: -903.33
+	}
+}
+
+# 测试数组map  (字典嵌套数组)
+# map[string][3]string 
+testdata_map_arr: {
+	key1: key1_1 key1_2 key1_3 
+	key2: key2_1 key2_2 key2_3
+	key3: key3_1 key3_2 key3_3 
+}
+testdata_map_slice: {
+	983.33: 3423 -9786 132 
+	-891.323: 13123 -98656 -67343 56234
+	13.44: 980
+	41.32: -897 -8755 
+}
+
+
+
+
+# 测试Map
+#`
+# map[string]any
+testdata_8_3: {
+	key1: 98.7
+	key2: baiqiqi
+	key3: 8978
+	key3: true 
+}
+`
+
+# 测试没有添加值得键
+#`
+nonum1:
+nonum2: 
+nonum3: true 
+nonum4: 
+nonum5: 35
+`

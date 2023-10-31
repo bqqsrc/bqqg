@@ -1,0 +1,213 @@
+name: baiqiqi4
+pass : compile
+accout:xinrui
+password
+:
+world
+
+database : color
+height: 33
+weight : 89.77
+negnum: -338.79
+negnum2 
+
+:
+
+-0.739
+
+max : -958
+
+min: 10e-30
+num1: 32e3
+num2: 75E-3
+num3 : 0.73e+6
+num4 :
+-5.65E7
+
+num5    :   10.57E-68
+
+num6 
+
+:
+
+15.7e+3
+
+notnum:21eE8
+done :
+nil
+failed 
+:
+false
+
+success:true
+
+strtrue: trues
+strfalse: falses
+strnil: nils
+strnum:8.73s
+strint: 999m
+strpoint: 8..7s 
+pointstr: .99
+
+var1 = testvar1
+var2=
+var3= testvar3
+var4=testvar4
+var5
+
+=   
+
+testvar5
+
+var6 =
+
+testvar6
+var7 =
+  testvar7
+
+  var8 = testvar8
+
+var9 =
+testvar9
+
+var10 =     
+
+
+
+   testvar10
+
+# 下面是注释测试
+comment: comment #注释的测试
+kids: children#靠近数据的注释
+kids0: #下面的值是kids键的
+child0
+kids1:#下面的值是kids1键的
+child1
+kids2#下面的添加了一个:，所以kids2是一个键
+:
+child2
+
+vartest#下面添加了一个=，所以vartest是一个变量
+= testvar 
+
+kids3#测试连续几行单行注释
+
+#测试连续几行单行注释
+#测试连续几行单行注释
+
+#测试连续几行单行注释
+
+:
+
+#测试连续几行单行注释
+
+child3
+
+#这是一个强制字符串
+#`这是一个多行的注释
+注释第二行
+`comment1: comment1
+comment2: #``注释的另一种形式`
+第2行
+第3行
+``
+comment2Value
+
+#``这是多行注释3
+第2行
+第3行```
+第4行
+``
+
+comment3#``多行注释4
+第2行
+第3行
+`第4行
+```第5行
+``
+
+:
+comment3Value
+
+#``一行多个注释``comment5#`一行多个注释`: comment5Value #```一行多个注释``` comment6 #`一行多个注释` : #`过行注释
+第2行`comment6Value
+
+
+code0: ``package main
+
+import (
+	"github.com/bqqsrc/gson"
+)
+func main() { 
+	gson.Unmarshal(nil, nil)
+}
+``
+code1 : ``line=`echo $do%```
+
+code2 : ``%`this is a string %```
+
+code3 : `%`a%` is ``b`` and c`
+code4 :
+``c is `cc` d 
+is ```dd```
+``
+numstr1: `98.888`
+
+notescape : a`ls` 
+
+%aescape: %!%%%@%{%}%:%$%=%`%#
+state1: a%=3
+state2: 30%%%=0.3
+state3: 0.3%=30%
+state4: 0.3%=30%%
+state5: 38.99%%+%$test
+
+a%=3: %test%=test
+
+`99.8%7%`` : 99.8%%7`
+
+server: {
+  listen: 80
+  name: com.bqq.com
+  location: /
+  timeout: 30
+}
+
+{
+  dlisten: 80
+  dname: com.bqq.com
+  dlocation: /
+  dtimeout: 30
+}
+
+{
+  ddlisten: 80
+  ddname: com.bqq.com
+  ddlocation: /
+  ddtimeout: 30
+}
+
+server2:{
+  listen: 80
+  name: com.bqq.com
+  location: /
+  timeout: 30
+}
+
+new_str : ``aaa
+bbb
+ccc```
+`
+dd
+``
+
+dic_test: dictest{
+  aa: aa
+}
+
+dic_num_test: 999.8{
+  bb: bb
+}
+
+tmp_num1: 9
+

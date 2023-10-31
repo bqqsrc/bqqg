@@ -1,0 +1,39 @@
+text2: {
+	v1: 33
+	v2: testtt
+	v3: 89.9
+	v5: aaa bbb ccc ddd
+}
+: nokeyname
+
+
+     = nokeyname
+node : test
+
+
+node : ````to many string````
+
+#````一个注释````node:test
+
+name:bqiqiqi
+dic:{
+  key1: vlule
+}
+}
+
+name:baiqiqi
+str : ``aaa
+bbb
+ccc
+`
+dd```
+a 
+
+name : {
+	key1: value1
+	key2: {
+		sub1: subValue1
+		subKey2: {
+			kind: kind2
+		}
+	}
