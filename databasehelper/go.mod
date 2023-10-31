@@ -1,4 +1,4 @@
-module databasehelper
+module github.com/bqqsrc/bqqg/databasehelper
 
 go 1.20
 

@@ -1,4 +1,4 @@
-module database
+module github.com/bqqsrc/bqqg/database
 
 go 1.20
 
