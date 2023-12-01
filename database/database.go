@@ -3,7 +3,7 @@ package database
 import (
 	//	"bqqgc/errer"
 	"database/sql"
-	"github.com/bqqsrc/bqqg/loger"
+	"github.com/bqqsrc/bqqg/log"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -149,7 +149,7 @@ func (s *SqlController) Query(sqlStr string, args ...any) (*sql.Rows, error) {
 		return nil, err
 	}
 	stmt, err := s.db.Prepare(sqlStr)
-	// loger.Debugf("sqlStr is %s, args is %v", sqlStr, args)
+	// log.Debugf("sqlStr is %s, args is %v", sqlStr, args)
 	defer closeStmt(stmt)
 	if err != nil {
 		return nil, CallerErr(funcName, "s.db.Prepare(%s) error, err: %s", sqlStr, err)
@@ -163,7 +163,7 @@ func (s *SqlController) Query(sqlStr string, args ...any) (*sql.Rows, error) {
 
 func ExecTxs(controllerName string, sqlAndArgsArr *SqlAndArgsBatch) error {
 	funcName := "ExecTxs"
-	loger.Debugf("%s, Test", funcName)
+	log.Debugf("%s, Test", funcName)
 	if controller, ok := GetController(controllerName); !ok {
 		return CallerErr(funcName, "%s not found in controllerMap", controllerName)
 	} else {
@@ -179,7 +179,7 @@ func (s *SqlController) ExecTxs(sqlAndArgsArr *SqlAndArgsBatch) error {
 	batch := sqlAndArgsArr.batch
 	if batch != nil {
 		for _, value := range sqlAndArgsArr.batch {
-			loger.Debugf("%s, sql: %s, args: %v", funcName, value.sqlStr, value.args)
+			log.Debugf("%s, sql: %s, args: %v", funcName, value.sqlStr, value.args)
 			if _, err := s.ExecTxSql(name, value.sqlStr, value.args...); err != nil {
 				return err
 			}
@@ -215,7 +215,7 @@ func (s *SqlController) ExecTxSql(name, sqlStr string, args ...any) (sql.Result,
 	}
 	if ret, err := tx.Exec(sqlStr, args...); err != nil {
 		if newErr := tx.Rollback(); newErr != nil {
-			loger.Critical("%s, tx.Rollback error, err: %s", funcName, newErr)
+			log.Criticalf("%s, tx.Rollback error, err: %s", funcName, newErr)
 		}
 		delete(s.txs, name)
 		//TODO 考虑添加一些方法，在出现队列中有待执行的sql语句时，会继续运行
@@ -251,7 +251,7 @@ func (s *SqlController) QueryTxSql(name, sqlStr string, args ...any) (*sql.Rows,
 	}
 	if ret, err := tx.Query(sqlStr, args...); err != nil {
 		if newErr := tx.Rollback(); newErr != nil {
-			loger.Critical("%s, tx.Rollback error, err: %s", funcName, newErr)
+			log.Criticalf("%s, tx.Rollback error, err: %s", funcName, newErr)
 		}
 		delete(s.txs, name)
 		//TODO 考虑添加一些方法，在出现队列中有待执行的sql语句时，会继续运行
@@ -342,6 +342,6 @@ func (s *SqlController) checkController(funcName string) error {
 
 func closeStmt(stmt *sql.Stmt) {
 	if err := stmt.Close(); err != nil {
-		loger.Errorf("closeStmt error, %s", err)
+		log.Errorf("closeStmt error, %s", err)
 	}
 }

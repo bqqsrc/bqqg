@@ -7,7 +7,7 @@ import (
 	// "os"
 	// "strings"
 	// "github.com/bqqsrc/bqqg/sqlfmt"
-	// "github.com/bqqsrc/bqqg/loger"
+	// "github.com/bqqsrc/bqqg/log"
 	// "log"
 	// "github.com/bqqsrc/bqqg/database"
 )
@@ -23,7 +23,7 @@ func rows2Maps(num int, rows *sql.Rows, keyTable map[string]string) ([]map[strin
 		return nil, CallerErr(funcName, "rows.Columns error, err: %s", err)
 	}
 	count := len(columns)
-	// loger.Debugf("%s count: %d\ncolumns: %v\n", funcName, count, columns)
+	// log.Debugf("%s count: %d\ncolumns: %v\n", funcName, count, columns)
 	var values = make([]any, count)
 	for i, _ := range values {
 		var valueI any
@@ -42,19 +42,19 @@ func rows2Maps(num int, rows *sql.Rows, keyTable map[string]string) ([]map[strin
 			// tmp2 := *tmp1
 			// switch tmp2.(type) {
 			// case int:
-			// 	loger.Debug("is int %d", tmp2.(int))
+			// 	log.Debug("is int %d", tmp2.(int))
 			// 	break
 			// case string:
-			// 	loger.Debug("is string %s", tmp2.(string))
+			// 	log.Debug("is string %s", tmp2.(string))
 			// 	break
 			// case int64:
-			// 	loger.Debug("is int64 %d", tmp2.(int64))
+			// 	log.Debug("is int64 %d", tmp2.(int64))
 			// 	break
 			// case float64:
-			// 	loger.Debug("is float64 %d", tmp2.(float64))
+			// 	log.Debug("is float64 %d", tmp2.(float64))
 			// 	break
 			// default:
-			// 	loger.Debug("is %s", reflect.TypeOf(tmp2))
+			// 	log.Debug("is %s", reflect.TypeOf(tmp2))
 			// 	break
 
 			// }
@@ -84,6 +84,6 @@ func rows2Maps(num int, rows *sql.Rows, keyTable map[string]string) ([]map[strin
 			return ret, nil
 		}
 	}
-	// loger.Debugf("%s ret: %v\n", funcName, ret)
+	// log.Debugf("%s ret: %v\n", funcName, ret)
 	return ret, nil
 }
