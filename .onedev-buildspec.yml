@@ -9,6 +9,11 @@ jobs:
     passwordSecret: bqqsrc_github
     force: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    branches: main
+  - !TagCreateTrigger
+    branches: main
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
