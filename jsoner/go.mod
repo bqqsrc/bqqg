@@ -1,3 +1,3 @@
-module github.com/bqqsrc/jsoner
+module github.com/bqqsrc/bqqg/jsoner
 
-go 1.18
+go 1.20
