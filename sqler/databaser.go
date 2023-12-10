@@ -1,16 +1,16 @@
 package sqler
 
 import (
-	"github.com/bqqsrc/errer"
 	"database/sql"
+	"github.com/bqqsrc/bqqg/errer"
 
-	"github.com/bqqsrc/loger"
+	"github.com/bqqsrc/bqqg/log"
 )
 
 func rows2Map(rows *sql.Rows, keyTable map[string]string) (map[string]interface{}, error) {
 	funcName := "Rows2Map"
 	maps, err := rows2Maps(1, rows, keyTable)
-	loger.Debugf("%s maps: %v\nerr: %s\n", funcName, maps, err)
+	log.Debugf("%s maps: %v\nerr: %s\n", funcName, maps, err)
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +23,7 @@ func rows2Map(rows *sql.Rows, keyTable map[string]string) (map[string]interface{
 func rows2MapWithKeys(rows *sql.Rows, keys []string) (map[string]interface{}, error) {
 	funcName := "Rows2Map"
 	maps, err := rows2MapsWithKeys(1, rows, keys)
-	loger.Debugf("%s maps: %v\nerr: %s\n", funcName, maps, err)
+	log.Debugf("%s maps: %v\nerr: %s\n", funcName, maps, err)
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func rows2Maps(num int, rows *sql.Rows, keyTable map[string]string) ([]map[strin
 		return nil, errer.CallerErr(funcName, "rows.Columns error, err: %s", err)
 	}
 	count := len(columns)
-	loger.Debugf("%s count: %d\ncolumns: %v\n", funcName, count, columns)
+	log.Debugf("%s count: %d\ncolumns: %v\n", funcName, count, columns)
 	var values = make([]interface{}, count)
 	for i, _ := range values {
 		var valueI interface{}
@@ -63,19 +63,19 @@ func rows2Maps(num int, rows *sql.Rows, keyTable map[string]string) ([]map[strin
 			// tmp2 := *tmp1
 			// switch tmp2.(type) {
 			// case int:
-			// 	loger.Debug("is int %d", tmp2.(int))
+			// 	log.Debug("is int %d", tmp2.(int))
 			// 	break
 			// case string:
-			// 	loger.Debug("is string %s", tmp2.(string))
+			// 	log.Debug("is string %s", tmp2.(string))
 			// 	break
 			// case int64:
-			// 	loger.Debug("is int64 %d", tmp2.(int64))
+			// 	log.Debug("is int64 %d", tmp2.(int64))
 			// 	break
 			// case float64:
-			// 	loger.Debug("is float64 %d", tmp2.(float64))
+			// 	log.Debug("is float64 %d", tmp2.(float64))
 			// 	break
 			// default:
-			// 	loger.Debug("is %s", reflect.TypeOf(tmp2))
+			// 	log.Debug("is %s", reflect.TypeOf(tmp2))
 			// 	break
 
 			// }
@@ -105,7 +105,7 @@ func rows2Maps(num int, rows *sql.Rows, keyTable map[string]string) ([]map[strin
 			return ret, nil
 		}
 	}
-	loger.Debugf("%s ret: %v\n", funcName, ret)
+	log.Debugf("%s ret: %v\n", funcName, ret)
 	return ret, nil
 }
 
@@ -120,7 +120,7 @@ func rows2MapsWithKeys(num int, rows *sql.Rows, keys []string) ([]map[string]int
 		return nil, errer.CallerErr(funcName, "rows.Columns error, err: %s", err)
 	}
 	count := len(columns)
-	loger.Debugf("%s count: %d\ncolumns: %v\n", funcName, count, columns)
+	log.Debugf("%s count: %d\ncolumns: %v\n", funcName, count, columns)
 	var values = make([]interface{}, count)
 	for i, _ := range values {
 		var valueI interface{}
@@ -153,19 +153,19 @@ func rows2MapsWithKeys(num int, rows *sql.Rows, keys []string) ([]map[string]int
 		// 	// tmp2 := *tmp1
 		// 	// switch tmp2.(type) {
 		// 	// case int:
-		// 	// 	loger.Debug("is int %d", tmp2.(int))
+		// 	// 	log.Debug("is int %d", tmp2.(int))
 		// 	// 	break
 		// 	// case string:
-		// 	// 	loger.Debug("is string %s", tmp2.(string))
+		// 	// 	log.Debug("is string %s", tmp2.(string))
 		// 	// 	break
 		// 	// case int64:
-		// 	// 	loger.Debug("is int64 %d", tmp2.(int64))
+		// 	// 	log.Debug("is int64 %d", tmp2.(int64))
 		// 	// 	break
 		// 	// case float64:
-		// 	// 	loger.Debug("is float64 %d", tmp2.(float64))
+		// 	// 	log.Debug("is float64 %d", tmp2.(float64))
 		// 	// 	break
 		// 	// default:
-		// 	// 	loger.Debug("is %s", reflect.TypeOf(tmp2))
+		// 	// 	log.Debug("is %s", reflect.TypeOf(tmp2))
 		// 	// 	break
 
 		// 	// }
@@ -195,7 +195,7 @@ func rows2MapsWithKeys(num int, rows *sql.Rows, keys []string) ([]map[string]int
 			return ret, nil
 		}
 	}
-	loger.Debugf("%s ret: %v\n", funcName, ret)
+	log.Debugf("%s ret: %v\n", funcName, ret)
 	return ret, nil
 }
 

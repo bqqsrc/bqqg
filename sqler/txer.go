@@ -1,8 +1,8 @@
 package sqler
 
 import (
-	"github.com/bqqsrc/dber"
-	"github.com/bqqsrc/loger"
+	"github.com/bqqsrc/bqqg/database"
+	"github.com/bqqsrc/bqqg/log"
 )
 
 type Txer struct {
@@ -38,8 +38,8 @@ func (t *Txer) AddSqlAndArgs(sqlAndArgs ...SqlAndArgs) {
 // 	return sqlList, argsList
 // }
 
-func (t *Txer) ToSqlAndArgsBatch() *dber.SqlAndArgsBatch {
-	batch := &dber.SqlAndArgsBatch{}
+func (t *Txer) ToSqlAndArgsBatch() *database.SqlAndArgsBatch {
+	batch := &database.SqlAndArgsBatch{}
 	for _, value := range t.txSqlList {
 		sql, args := value.ToSqlAndArgs()
 		if sql == "" {
@@ -50,8 +50,8 @@ func (t *Txer) ToSqlAndArgsBatch() *dber.SqlAndArgsBatch {
 	return batch
 }
 
-// func (t *Txer) ToSqlAndArgsGroup() dber.SqlAndArgsGroup {
-// 	group := dber.SqlAndArgsGroup{}
+// func (t *Txer) ToSqlAndArgsGroup() database.SqlAndArgsGroup {
+// 	group := database.SqlAndArgsGroup{}
 // 	for _, value := range t.txSqlList {
 // 		sql, args := value.ToSqlAndArgs()
 // 		if sql == "" {
@@ -65,8 +65,8 @@ func (t *Txer) ToSqlAndArgsBatch() *dber.SqlAndArgsBatch {
 func (t *Txer) ExecSql(controller string) (int64, error) {
 	funcName := "Txer.ExecSql"
 	batch := t.ToSqlAndArgsBatch()
-	loger.Debugf("%s, TestTest batch is %v", funcName, batch)
-	err := dber.ExecTxs(controller, batch)
+	log.Debugf("%s, TestTest batch is %v", funcName, batch)
+	err := database.ExecTxs(controller, batch)
 	return 0, err
 }
 

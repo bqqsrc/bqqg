@@ -1,11 +1,11 @@
 package sqler
 
 import (
-	"github.com/bqqsrc/dber"
 	"errors"
+	"github.com/bqqsrc/bqqg/database"
 	"strings"
 
-	"github.com/bqqsrc/loger"
+	"github.com/bqqsrc/bqqg/log"
 )
 
 type Inserter struct {
@@ -27,7 +27,7 @@ func (i *Inserter) AddKeyValue(key string, value interface{}) {
 		i.keyValue = make(map[string]interface{})
 	}
 	if _, ok := i.keyValue[key]; ok {
-		loger.Errorf("Inserter redeclare key: %s", key)
+		log.Errorf("Inserter redeclare key: %s", key)
 		return
 	}
 	i.keyValue[key] = value
@@ -83,11 +83,11 @@ func (i *Inserter) ExecSql(controller string) (int64, error) {
 	funcName := "Inserter.ExecSql"
 	sql, args := i.ToSqlAndArgs()
 	if sql == "" {
-		loger.Errorf("Error, %s, sql is empty", funcName)
+		log.Errorf("Error, %s, sql is empty", funcName)
 		return -1, nil
 	}
-	loger.Debugf("%s, sql: %s\nargs: %v\n", funcName, sql, args)
-	if ret, err := dber.Exec(controller, sql, args...); err != nil {
+	log.Debugf("%s, sql: %s\nargs: %v\n", funcName, sql, args)
+	if ret, err := database.Exec(controller, sql, args...); err != nil {
 		return -1, err
 	} else {
 		return ret.LastInsertId()
@@ -98,15 +98,15 @@ func (i *Inserter) ExecSqlTx(controller, name string, commit bool) error {
 	funcName := "Inserter.ExecSqlTx"
 	sql, args := i.ToSqlAndArgs()
 	if sql == "" {
-		loger.Errorf("Error, %s, sql is empty", funcName)
+		log.Errorf("Error, %s, sql is empty", funcName)
 		return errors.New("sql is empty")
 	}
-	loger.Debugf("%s, sql: %s\nargs: %v\n", funcName, sql, args)
-	if _, err := dber.ExecTxSql(controller, name, sql, args...); err != nil {
+	log.Debugf("%s, sql: %s\nargs: %v\n", funcName, sql, args)
+	if _, err := database.ExecTxSql(controller, name, sql, args...); err != nil {
 		return err
 	} else {
 		if commit {
-			return dber.CommitTx(controller, name)
+			return database.CommitTx(controller, name)
 		}
 		return nil
 	}

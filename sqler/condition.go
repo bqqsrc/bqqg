@@ -3,7 +3,7 @@ package sqler
 import (
 	"strings"
 
-	"github.com/bqqsrc/loger"
+	"github.com/bqqsrc/bqqg/log"
 )
 
 type ConditionFunc func() (string, []interface{})
@@ -13,8 +13,8 @@ func (f ConditionFunc) ToSqlAndArgs() (string, []interface{}) {
 }
 
 type ConditionLike struct {
-	key   string
-	value string
+	key    string
+	value  string
 	escape string
 }
 
@@ -143,9 +143,9 @@ func GetConditionVale(key string, value interface{}, oper int) *ConditionVale {
 
 const (
 	Int = iota
-	Int64 
+	Int64
 	TimeStamp
-	Float64 
+	Float64
 )
 
 type ConditionRange struct {
@@ -154,7 +154,7 @@ type ConditionRange struct {
 	end        interface{}
 	equalBegin bool
 	equalEnd   bool
-	keyType int
+	keyType    int
 }
 
 func (c *ConditionRange) Reset() {
@@ -357,7 +357,7 @@ func (c *ConditionBatch) ToSqlAndArgs() (string, []interface{}) {
 	index := 0
 	args := make([]interface{}, 0)
 	count := len(c.conditionList)
-	loger.Debugf("%s, count: %d\n", funcName, count)
+	log.Debugf("%s, count: %d\n", funcName, count)
 	for i := 0; i < count; i++ {
 		if index > 0 {
 			build.WriteString(" ")
@@ -376,7 +376,7 @@ func (c *ConditionBatch) ToSqlAndArgs() (string, []interface{}) {
 			build.WriteString(")")
 		}
 		args = append(args, arg...)
-		loger.Debugf("%s, sql: %s\nargs: %v\narg: %v\n", funcName, sql, args, arg)
+		log.Debugf("%s, sql: %s\nargs: %v\narg: %v\n", funcName, sql, args, arg)
 	}
 	return build.String(), args
 }
@@ -393,7 +393,7 @@ func (c *ConditionBatch) toWhere() (string, []interface{}) {
 	var build strings.Builder
 	build.WriteString(" where ")
 	build.WriteString(sql)
-	loger.Debugf("%s, sql: %s\nargs: %v\n", funcName, sql, args)
+	log.Debugf("%s, sql: %s\nargs: %v\n", funcName, sql, args)
 	return build.String(), args
 }
 

@@ -1,23 +1,23 @@
 package sqler
 
 import (
-	"github.com/bqqsrc/dber"
 	"database/sql"
+	"github.com/bqqsrc/bqqg/database"
 	"strings"
 
-	"github.com/bqqsrc/loger"
+	"github.com/bqqsrc/bqqg/log"
 )
 
 type Selecter struct {
 	//selectkeys *KeyerBatch
-	selectKeys []string
-	joins      []*Joiner
-	tables     *Fromer
-	groups     *Grouper
-	conditions *ConditionBatch
-	orders     *OrderBatch
-	limit      int
-	offset     int
+	selectKeys       []string
+	joins            []*Joiner
+	tables           *Fromer
+	groups           *Grouper
+	conditions       *ConditionBatch
+	orders           *OrderBatch
+	limit            int
+	offset           int
 	havingConditions *ConditionBatch
 }
 
@@ -183,7 +183,6 @@ func (s *Selecter) GetConditions() *ConditionBatch {
 	return s.conditions
 }
 
-
 func (s *Selecter) SetHavingConditions(conditions *ConditionBatch) {
 	s.havingConditions = conditions
 }
@@ -204,7 +203,7 @@ func (s *Selecter) ToSqlAndArgs() (string, []interface{}) {
 	var build strings.Builder
 	args := make([]interface{}, 0)
 	sql := s.toSelect()
-	loger.Debugf("%s, 1 sql: %s\nargs: %v\n", funcName, sql, args)
+	log.Debugf("%s, 1 sql: %s\nargs: %v\n", funcName, sql, args)
 	build.WriteString(sql)
 	if s.tables == nil {
 		return "", nil
@@ -215,35 +214,35 @@ func (s *Selecter) ToSqlAndArgs() (string, []interface{}) {
 		return "", nil
 	}
 	args = append(args, arg...)
-	loger.Debugf("%s, 2 sql: %s\nargs: %v\n", funcName, sql, args)
+	log.Debugf("%s, 2 sql: %s\nargs: %v\n", funcName, sql, args)
 	build.WriteString(sql)
 	sql, arg = s.toJoin()
 	build.WriteString(sql)
 	args = append(args, arg...)
-	loger.Debugf("%s, 3 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
+	log.Debugf("%s, 3 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
 	if s.conditions != nil {
 		sql, arg = s.conditions.toWhere()
 		build.WriteString(sql)
 		args = append(args, arg...)
-		loger.Debugf("%s, 4 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
+		log.Debugf("%s, 4 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
 	}
 	if s.groups != nil {
 		sql, arg = s.groups.ToSqlAndArgs()
 		build.WriteString(sql)
 		args = append(args, arg...)
-		loger.Debugf("%s, 5 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
+		log.Debugf("%s, 5 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
 	}
 	if s.havingConditions != nil {
 		sql, arg = s.havingConditions.toHaving()
 		build.WriteString(sql)
 		args = append(args, arg...)
-		loger.Debugf("%s, 5 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
+		log.Debugf("%s, 5 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
 	}
 	if s.orders != nil {
 		sql, arg = s.orders.ToSqlAndArgs()
 		build.WriteString(sql)
 		args = append(args, arg...)
-		loger.Debugf("%s, 6 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
+		log.Debugf("%s, 6 sql: %s\narg: %v\nargs: %v\n", funcName, sql, arg, args)
 	}
 	limit := s.limit
 	if limit > 0 {
@@ -256,7 +255,7 @@ func (s *Selecter) ToSqlAndArgs() (string, []interface{}) {
 		args = append(args, offset)
 	}
 	//build.WriteString(";")
-	loger.Debugf("%s, 7 arg: %v\nargs: %v\n", funcName, arg, args)
+	log.Debugf("%s, 7 arg: %v\nargs: %v\n", funcName, arg, args)
 	return build.String(), args
 }
 
@@ -310,9 +309,9 @@ func (s *Selecter) ToMap(controller, txName string, keyMap map[string]string) (m
 	var row *sql.Rows
 	var err error
 	if txName != "" {
-		row, err = dber.QueryTxSql(controller, txName, sqlStr, args...)
+		row, err = database.QueryTxSql(controller, txName, sqlStr, args...)
 	} else {
-		row, err = dber.Query(controller, sqlStr, args...)
+		row, err = database.Query(controller, sqlStr, args...)
 	}
 	if err != nil {
 		return nil, err
@@ -322,15 +321,15 @@ func (s *Selecter) ToMap(controller, txName string, keyMap map[string]string) (m
 
 func (s *Selecter) ToMapListWithKeys(controller, txName string, keys []string) ([]map[string]interface{}, error) {
 	funcName := "Selecter.ToMapList"
-	loger.Debugf("%s, controller: %s\ns: %v\n", funcName, controller, s)
+	log.Debugf("%s, controller: %s\ns: %v\n", funcName, controller, s)
 	sqlStr, args := s.ToSqlAndArgs()
-	loger.Debugf("%s, sql: %s\nargs: %v\n", funcName, sqlStr, args)
+	log.Debugf("%s, sql: %s\nargs: %v\n", funcName, sqlStr, args)
 	var row *sql.Rows
 	var err error
 	if txName != "" {
-		row, err = dber.QueryTxSql(controller, txName, sqlStr, args...)
+		row, err = database.QueryTxSql(controller, txName, sqlStr, args...)
 	} else {
-		row, err = dber.Query(controller, sqlStr, args...)
+		row, err = database.Query(controller, sqlStr, args...)
 	}
 	if err != nil {
 		return nil, err
@@ -340,15 +339,15 @@ func (s *Selecter) ToMapListWithKeys(controller, txName string, keys []string) (
 
 func (s *Selecter) ToMapList(controller, txName string, keyMap map[string]string) ([]map[string]interface{}, error) {
 	funcName := "Selecter.ToMapList"
-	loger.Debugf("%s, controller: %s\ns: %v\n", funcName, controller, s)
+	log.Debugf("%s, controller: %s\ns: %v\n", funcName, controller, s)
 	sqlStr, args := s.ToSqlAndArgs()
-	loger.Debugf("%s, sql: %s\nargs: %v\n", funcName, sqlStr, args)
+	log.Debugf("%s, sql: %s\nargs: %v\n", funcName, sqlStr, args)
 	var row *sql.Rows
 	var err error
 	if txName != "" {
-		row, err = dber.QueryTxSql(controller, txName, sqlStr, args...)
+		row, err = database.QueryTxSql(controller, txName, sqlStr, args...)
 	} else {
-		row, err = dber.Query(controller, sqlStr, args...)
+		row, err = database.Query(controller, sqlStr, args...)
 	}
 	if err != nil {
 		return nil, err
@@ -361,15 +360,15 @@ func (s *Selecter) ToTable(controller, txName string, keyMap map[string]string) 
 
 func (s *Selecter) ToInt(controller, txName string) (int, error) {
 	funcName := "Selecter.ToInt"
-	loger.Debugf("%s, controller: %s\ns: %v\n", funcName, controller, s)
+	log.Debugf("%s, controller: %s\ns: %v\n", funcName, controller, s)
 	sqlStr, args := s.ToSqlAndArgs()
-	loger.Debugf("%s, sql: %s\nargs: %v\n", funcName, sqlStr, args)
+	log.Debugf("%s, sql: %s\nargs: %v\n", funcName, sqlStr, args)
 	var rows *sql.Rows
 	var err error
 	if txName != "" {
-		rows, err = dber.QueryTxSql(controller, txName, sqlStr, args...)
+		rows, err = database.QueryTxSql(controller, txName, sqlStr, args...)
 	} else {
-		rows, err = dber.Query(controller, sqlStr, args...)
+		rows, err = database.Query(controller, sqlStr, args...)
 	}
 	if err != nil {
 		return 0, err
@@ -378,7 +377,7 @@ func (s *Selecter) ToInt(controller, txName string) (int, error) {
 	for rows.Next() {
 		rows.Scan(&num)
 	}
-	loger.Debugf("%s, num: %d\n", funcName, num)
+	log.Debugf("%s, num: %d\n", funcName, num)
 	return num, nil
 }
 
@@ -387,9 +386,9 @@ func (s *Selecter) ToFloat64(controller, txName string) (float64, error) {
 	var rows *sql.Rows
 	var err error
 	if txName != "" {
-		rows, err = dber.QueryTxSql(controller, txName, sqlStr, args...)
+		rows, err = database.QueryTxSql(controller, txName, sqlStr, args...)
 	} else {
-		rows, err = dber.Query(controller, sqlStr, args...)
+		rows, err = database.Query(controller, sqlStr, args...)
 	}
 	if err != nil {
 		return 0, err
@@ -406,9 +405,9 @@ func (s *Selecter) ToString(controller, txName string) (string, error) {
 	var rows *sql.Rows
 	var err error
 	if txName != "" {
-		rows, err = dber.QueryTxSql(controller, txName, sqlStr, args...)
+		rows, err = database.QueryTxSql(controller, txName, sqlStr, args...)
 	} else {
-		rows, err = dber.Query(controller, sqlStr, args...)
+		rows, err = database.Query(controller, sqlStr, args...)
 	}
 	if err != nil {
 		return "", err

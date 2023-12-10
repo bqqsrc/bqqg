@@ -1,16 +1,16 @@
 package sqler
 
 import (
-	"github.com/bqqsrc/imaper"
+	"github.com/bqqsrc/bqqg/imaper"
+	"github.com/bqqsrc/bqqg/log"
 	"strings"
-	"github.com/bqqsrc/loger"
 )
 
 type Keyer struct {
-	table string 
-	key string
-	alias string
-	group *Grouper
+	table      string
+	key        string
+	alias      string
+	group      *Grouper
 	expression interface{}
 }
 
@@ -52,7 +52,7 @@ func (k *Keyer) ToSqlAndArgs() (string, []interface{}) {
 		return "", nil
 	}
 	if k.key != "" && k.expression != nil {
-		loger.Errorf("%s error, both key and expression are not empty, key: %s, expression: %s", funcName, k.key, k.expression)
+		log.Errorf("%s error, both key and expression are not empty, key: %s, expression: %s", funcName, k.key, k.expression)
 		return "", nil
 	}
 	var build strings.Builder
@@ -84,7 +84,7 @@ func (k *Keyer) ToSqlAndArgs() (string, []interface{}) {
 
 func GetKeyer(table, key, alias string) *Keyer {
 	return &Keyer{table: table, key: key, alias: alias}
-} 
+}
 
 type KeyerBatch struct {
 	keys []*Keyer
@@ -100,7 +100,7 @@ func (k *KeyerBatch) SetKeys(keys ...*Keyer) {
 
 func (k *KeyerBatch) AddKeys(keys ...*Keyer) {
 	if k.keys == nil {
-		k.keys = keys 
+		k.keys = keys
 	} else {
 		k.keys = append(k.keys, keys...)
 	}
@@ -130,7 +130,7 @@ func (k *KeyerBatch) ToSqlAndArgs() (string, []interface{}) {
 	index := 0
 	args := make([]interface{}, 0)
 	for _, value := range k.keys {
-		sql, arg := value.ToSqlAndArgs() 
+		sql, arg := value.ToSqlAndArgs()
 		if sql != "" {
 			if index > 0 {
 				build.WriteString(", ")
@@ -147,4 +147,4 @@ func (k *KeyerBatch) ToSqlAndArgs() (string, []interface{}) {
 
 func GetKeyerBatch() *KeyerBatch {
 	return &KeyerBatch{}
-} 
+}

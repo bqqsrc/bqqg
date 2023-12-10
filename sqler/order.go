@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/bqqsrc/loger"
+	"github.com/bqqsrc/bqqg/log"
 )
 
 type OrderBy struct {
@@ -29,7 +29,7 @@ func (o *Order) Reset() {
 
 func (o *Order) ToSqlAndArgs() (string, []interface{}) {
 	funcName := "Order.ToSqlAndArgs"
-	loger.Debugf("%s, o.key: %s\no.asc: %t\n", funcName, o.key, o.asc)
+	log.Debugf("%s, o.key: %s\no.asc: %t\n", funcName, o.key, o.asc)
 	if o.key == "" {
 		return "", nil
 	}
@@ -38,7 +38,7 @@ func (o *Order) ToSqlAndArgs() (string, []interface{}) {
 		ascStr = "asc"
 	}
 	sql := fmt.Sprintf("%s %s", o.key, ascStr)
-	loger.Debugf("%s, sql: %s\n", funcName, sql)
+	log.Debugf("%s, sql: %s\n", funcName, sql)
 	return sql, nil
 }
 
@@ -56,7 +56,7 @@ func (o *OrderBatch) AddOrder(key string, isAsc bool) {
 	}
 	for _, value := range o.orders {
 		if value.key == key {
-			loger.Errorf("redeclare OrderBy: %s", key)
+			log.Errorf("redeclare OrderBy: %s", key)
 			return
 		}
 	}
