@@ -36,8 +36,8 @@ func TestMyJsonObjcet(t *testing.T) {
 	if fmt.Sprintf("%T", myJson["key3"]) != "bool" {
 		t.Fatalf("TestMyJsonObjcet error, type of key3 is not bool")
 	}
-	if fmt.Sprintf("%T", myJson["key4"]) != "json_util.MyJsonObject" {
-		t.Fatalf("TestMyJsonObjcet error, type of key4 is not json_util.MyJsonObject")
+	if fmt.Sprintf("%T", myJson["key4"]) != "json.MyJsonObject" {
+		t.Fatalf("TestMyJsonObjcet error, type of key4 is not json.MyJsonObject")
 	}
 }
 
@@ -332,8 +332,8 @@ func checkJsonForGetType(result MyJsonObject, t *testing.T) {
 	if fmt.Sprintf("%T", result["json2"]) != "map[string]interface {}" {
 		t.Fatalf("TestGetJsonFromFile_GetType error, type of json2 is not []interface {}")
 	}
-	if fmt.Sprintf("%T", GetJson(result, "json2")) != "json_util.MyJsonObject" {
-		t.Fatalf("TestGetJsonFromFile_GetType error, type of GetJson json2 is not json_util.MyJsonObject")
+	if fmt.Sprintf("%T", GetJson(result, "json2")) != "json.MyJsonObject" {
+		t.Fatalf("TestGetJsonFromFile_GetType error, type of GetJson json2 is not json.MyJsonObject")
 	}
 	jsonValue := GetJson(result, "json2")
 	if jsonValue["key1"] != 1.0 {
