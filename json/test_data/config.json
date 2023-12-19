@@ -1,0 +1,29 @@
+{
+    "IntKey1": 8003,
+    "IntKey2": 3306, 
+    "IntKey3": -7,
+    "IntKey4": 0,
+    "FloatKey1": 9.4,
+    "FloatKey2": 0,
+    "FloatKey3": -10.0,
+    "StrKey1": "testValue1",
+    "StrKey2": "",
+    "StrKey3": "123",
+    "StrKey4": "-1010",
+    "StrKey5": "7.999",
+    "ChineseStrKey1": "中文测试",
+    "中文键": "中文值",
+    "boolKey1": false,
+    "boolKey2": true,
+    "array1": [],
+    "array2": ["value1", "value2", "value3"],
+    "array3": [1, 2, 7.9, 8.8],
+    "array4": [true, false, true, true],
+    "array5": [1, 2, 3, 4, 5],
+    "json1": {},
+    "json2": {
+        "key1": 1,
+        "key2": false,
+        "key3": "value1"
+    }
+}
